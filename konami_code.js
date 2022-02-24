@@ -1,29 +1,23 @@
-let keys = {37:'left',38:'up',39:'right',40:'down',65:'a',66:'b'}
-let code = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a']
+const code = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
+let index = 0;
 
-document.addEventListener('keydown', checkCode, false);
+function init() {
+  // your code here'
+  document.body.addEventListener("keydown", function onKeyDownHandler(e) {
+    const key = parseInt(e.detail || e.which)
+    
+    if (key === code[index]) {
+      index++
 
-let keyCount = 0;
+      if (index === code.length) {
+        alert("Hurray")
 
-function checkCode(event) {
-  let keyPressed = keys[event.keyCode];
-
-  if (keyPressed === code[keyCount]) {
-    keyCount++;
-
-    if (keyCount === code.length) {
-      cheatCodeActivated();
-      resetKeyState();
+        index = 0
+      }
+    } else {
+      index = 0
     }
-  } else {
-    resetKeyState();
-  }
+  })
 }
 
-function cheatCodeActivated() {
-  alert("Cheat code activated!")
-}
-
-function resetKeyState() {
-  keyCount=0;
-}
+init()
